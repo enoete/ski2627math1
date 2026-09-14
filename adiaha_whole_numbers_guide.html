@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whole Numbers — Adiaha's Study Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F7FAFF;
+  --rule:#DCE7F7;
+  --margin:#F2889B;
+  --ink:#16253F;
+  --soft:#55688C;
+  --lemon:#FFE873;
+  --mint:#A8ECCB;
+  --coral:#FFAE9B;
+  --lilac:#D3C2FF;
+  --sky:#A6DCFF;
+  --ok:#158A66;
+  --no:#D33F57;
+  --card:#FFFFFF;
+  --shadow:3px 3px 0 rgba(22,37,63,.16);
+  --mono:"Roboto Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:"Karla", system-ui, -apple-system, Segoe UI, sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  font-size:17px;
+  line-height:1.6;
+}
+.sheet{
+  max-width:860px;
+  margin:0 auto;
+  background:
+    linear-gradient(var(--paper), var(--paper)) padding-box,
+    repeating-linear-gradient(to bottom, transparent 0 33px, var(--rule) 33px 34px);
+  background-color:var(--paper);
+  padding:28px 26px 80px 26px;
+  position:relative;
+}
+.sheet::before{
+  content:"";
+  position:absolute;
+  top:0;bottom:0;left:16px;
+  width:2px;
+  background:var(--margin);
+  opacity:.55;
+}
+@media (min-width:720px){
+  .sheet{padding:40px 54px 100px 74px}
+  .sheet::before{left:52px}
+}
+
+h1,h2,h3,h4{font-family:"Baloo 2", system-ui, sans-serif; line-height:1.12; margin:0}
+h1{font-size:clamp(34px,7vw,56px); font-weight:800; letter-spacing:-.5px}
+h2{font-size:clamp(25px,4.6vw,34px); font-weight:700}
+h3{font-size:clamp(20px,3.4vw,24px); font-weight:700; margin-bottom:6px}
+h4{font-size:18px; font-weight:700; margin-bottom:4px}
+p{margin:.65em 0}
+strong{font-weight:700}
+a{color:#1668A8}
+
+/* ---------- highlighter marks ---------- */
+.hl{
+  background-image:linear-gradient(180deg, transparent 52%, var(--lemon) 52%, var(--lemon) 94%, transparent 94%);
+  padding:0 .12em;
+}
+.hl.mint{background-image:linear-gradient(180deg, transparent 52%, var(--mint) 52%, var(--mint) 94%, transparent 94%)}
+.hl.coral{background-image:linear-gradient(180deg, transparent 52%, var(--coral) 52%, var(--coral) 94%, transparent 94%)}
+.hl.lilac{background-image:linear-gradient(180deg, transparent 52%, var(--lilac) 52%, var(--lilac) 94%, transparent 94%)}
+.hl.sky{background-image:linear-gradient(180deg, transparent 52%, var(--sky) 52%, var(--sky) 94%, transparent 94%)}
+
+/* ---------- hero ---------- */
+.hero{padding:10px 0 6px}
+.hero .kicker{font-family:"Baloo 2"; font-weight:600; font-size:19px; color:var(--soft); margin:0 0 2px}
+.hero h1 span{display:block}
+.hero p.lede{font-size:19px; max-width:58ch}
+
+.tilestrip{display:flex; flex-wrap:wrap; gap:5px; align-items:flex-end; margin:22px 0 6px}
+.tile{
+  font-family:var(--mono); font-weight:700;
+  font-size:clamp(26px,6.5vw,42px);
+  width:clamp(40px,9vw,58px); height:clamp(54px,12vw,74px);
+  display:flex; align-items:center; justify-content:center;
+  background:var(--card); color:var(--ink);
+  border:2px solid var(--ink); border-radius:10px;
+  box-shadow:var(--shadow); cursor:pointer;
+  transition:transform .12s ease, background .12s ease;
+}
+.tile:hover{transform:translateY(-3px)}
+.tile.on{background:var(--lemon)}
+.tile.comma{
+  border:none; box-shadow:none; background:none; width:auto;
+  cursor:default; align-items:flex-end; padding-bottom:6px;
+}
+.tile.comma:hover{transform:none}
+.readout{
+  border:2px dashed var(--soft); border-radius:12px;
+  padding:12px 14px; background:#fff; min-height:86px;
+  font-size:17px;
+}
+.readout .big{font-family:"Baloo 2"; font-weight:700; font-size:23px; display:block}
+
+/* ---------- structure ---------- */
+.lesson{margin:52px 0 0; scroll-margin-top:12px}
+.lesson-head{display:flex; gap:12px; align-items:baseline; margin-bottom:6px}
+.lesson-num{
+  font-family:"Baloo 2"; font-weight:800; font-size:20px;
+  background:var(--ink); color:#fff; border-radius:50%;
+  width:38px; height:38px; flex:0 0 38px;
+  display:flex; align-items:center; justify-content:center;
+}
+.card{
+  background:var(--card); border:2px solid var(--ink);
+  border-radius:14px; box-shadow:var(--shadow);
+  padding:16px 18px; margin:18px 0;
+}
+.card.quiet{border-color:#C3D2E8; box-shadow:none}
+.card h4:first-child{margin-top:0}
+.rule-box{background:linear-gradient(180deg,#FFFDF0,#FFF8DC); border-color:#E8C33C}
+.trap-box{background:#FFF2F0; border-color:#E88374}
+.win-box{background:#F0FBF5; border-color:#7FCFAA}
+
+.grid2{display:grid; grid-template-columns:1fr; gap:14px}
+@media (min-width:640px){.grid2{grid-template-columns:1fr 1fr}}
+
+ul.tight{margin:.4em 0; padding-left:1.15em}
+ul.tight li{margin:.25em 0}
+
+.mono{font-family:var(--mono); font-weight:700}
+.num{font-family:var(--mono); font-weight:700; letter-spacing:.5px}
+
+table.pv{width:100%; border-collapse:collapse; font-size:14px; margin-top:8px}
+table.pv th, table.pv td{border:1.5px solid var(--ink); padding:6px 4px; text-align:center}
+table.pv th{background:var(--sky); font-family:"Baloo 2"; font-weight:600; font-size:13px}
+table.pv td.d{font-family:var(--mono); font-size:22px; font-weight:700; background:#fff}
+table.pv .per-m{background:#FFE9E3}
+table.pv .per-t{background:#FFF7D6}
+table.pv .per-o{background:#E7F7EE}
+.tablewrap{overflow-x:auto; -webkit-overflow-scrolling:touch}
+
+/* ---------- controls ---------- */
+button{font-family:"Karla", sans-serif}
+.btn{
+  font-family:"Baloo 2"; font-weight:700; font-size:16px;
+  background:var(--ink); color:#fff; border:2px solid var(--ink);
+  border-radius:999px; padding:8px 18px; cursor:pointer;
+  box-shadow:2px 2px 0 rgba(22,37,63,.25);
+}
+.btn:hover{background:#243a63}
+.btn.ghost{background:#fff; color:var(--ink)}
+.btn.ghost:hover{background:var(--lemon)}
+.btn:active{transform:translate(2px,2px); box-shadow:none}
+.btnrow{display:flex; flex-wrap:wrap; gap:8px; margin:12px 0}
+.chipbtn{
+  font-family:var(--mono); font-weight:700; font-size:15px;
+  background:#fff; border:2px solid var(--ink); border-radius:9px;
+  padding:7px 12px; cursor:pointer;
+}
+.chipbtn.on{background:var(--lilac)}
+:focus-visible{outline:3px solid #1668A8; outline-offset:2px}
+
+/* ---------- rounding lab ---------- */
+.roundline{position:relative; height:104px; margin:18px 0 4px}
+.roundline .bar{position:absolute; top:52px; left:0; right:0; height:4px; background:var(--ink); border-radius:2px}
+.roundline .peg{position:absolute; top:44px; width:4px; height:20px; background:var(--ink); transform:translateX(-2px)}
+.roundline .mid{background:var(--margin); height:28px; top:40px}
+.roundline .lbl{
+  position:absolute; top:76px; transform:translateX(-50%);
+  font-family:var(--mono); font-weight:700; font-size:13px; white-space:nowrap;
+}
+.roundline .lbl.midl{color:var(--margin)}
+.roundline .lbl.edgeL{transform:none}
+.roundline .lbl.edgeR{transform:translateX(-100%)}
+.roundline .ball{
+  position:absolute; top:22px; transform:translateX(-50%);
+  width:26px; height:26px; border-radius:50%;
+  background:var(--lemon); border:2.5px solid var(--ink);
+  transition:left .35s cubic-bezier(.2,.8,.3,1);
+}
+.roundline .ballv{
+  position:absolute; top:-2px; transform:translateX(-50%);
+  font-family:var(--mono); font-weight:700; font-size:13px; white-space:nowrap;
+  transition:left .35s cubic-bezier(.2,.8,.3,1);
+}
+.digitrow{display:flex; gap:3px; flex-wrap:wrap; font-family:var(--mono); font-size:clamp(22px,5.4vw,32px); font-weight:700; margin:6px 0}
+.digitrow span{padding:2px 4px; border-radius:6px}
+.digitrow span.target{background:var(--lemon); border:2px solid var(--ink)}
+.digitrow span.decider{background:var(--coral); border:2px dashed var(--ink)}
+.digitrow span.zeroed{color:#9AA9C0}
+.verdict{font-family:"Baloo 2"; font-weight:700; font-size:20px; margin-top:8px}
+
+/* ---------- square builder ---------- */
+.sqwrap{display:flex; gap:18px; flex-wrap:wrap; align-items:center}
+.sqgrid{display:grid; gap:3px; background:#fff; padding:6px; border:2px solid var(--ink); border-radius:10px}
+.sqgrid i{width:13px; height:13px; background:var(--mint); border-radius:3px; display:block}
+@media (min-width:520px){.sqgrid i{width:16px;height:16px}}
+.sqfacts{font-size:18px}
+.sqfacts .eq{font-family:var(--mono); font-weight:700; font-size:22px; display:block; margin:3px 0}
+
+.sqtable{display:flex; flex-wrap:wrap; gap:6px; margin-top:10px}
+.sqtable div{
+  font-family:var(--mono); font-size:13px; font-weight:700;
+  background:#fff; border:2px solid var(--ink); border-radius:8px;
+  padding:5px 7px; text-align:center; min-width:62px;
+}
+.sqtable div b{display:block; font-size:15px; color:#1668A8}
+
+/* ---------- drag & drop ---------- */
+.pool{
+  display:flex; flex-wrap:wrap; gap:8px;
+  background:#EFF4FC; border:2px dashed #93A8C8; border-radius:12px;
+  padding:10px; min-height:56px;
+}
+.chip{
+  font-family:var(--mono); font-weight:700; font-size:16px;
+  background:var(--lemon); border:2px solid var(--ink); border-radius:9px;
+  padding:7px 11px; cursor:grab; user-select:none;
+  box-shadow:2px 2px 0 rgba(22,37,63,.2);
+  display:inline-flex; align-items:center; gap:7px; touch-action:none;
+}
+.chip.dragging{opacity:.35}
+.chip.ghost{position:fixed; z-index:999; pointer-events:none; opacity:.9; transform:translate(-50%,-50%) rotate(-3deg)}
+.chip .x{
+  border:none; background:rgba(22,37,63,.14); color:var(--ink);
+  font-weight:700; font-size:13px; line-height:1;
+  width:19px; height:19px; border-radius:50%; cursor:pointer; padding:0;
+}
+.chip .x:hover{background:var(--no); color:#fff}
+.chip.right{background:#BEF0D8}
+.chip.wrong{background:#FFC9D1}
+
+.matchrow{display:flex; align-items:center; gap:10px; margin:8px 0; flex-wrap:wrap}
+.matchprompt{
+  font-family:var(--mono); font-weight:700; font-size:18px;
+  background:var(--sky); border:2px solid var(--ink); border-radius:9px;
+  padding:7px 11px; min-width:96px; text-align:center;
+}
+.dz{
+  min-height:44px; min-width:120px; flex:1;
+  border:2px dashed #93A8C8; border-radius:10px; background:#fff;
+  display:flex; align-items:center; gap:6px; padding:5px; flex-wrap:wrap;
+}
+.dz.over{border-color:var(--ink); background:var(--mint)}
+.bins{display:grid; grid-template-columns:1fr; gap:10px; margin-top:10px}
+@media (min-width:560px){.bins{grid-template-columns:1fr 1fr}}
+.bin{border:2px solid var(--ink); border-radius:12px; background:#fff; padding:8px}
+.bin h5{margin:0 0 6px; font-family:"Baloo 2"; font-size:16px; font-weight:700}
+.bin .dz{min-height:76px; border-style:dashed; width:100%}
+.slots{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+.slot{text-align:center}
+.slot .cap{font-size:12px; color:var(--soft); font-weight:700}
+.slot .dz{min-width:92px; min-height:48px; justify-content:center}
+
+/* ---------- test ---------- */
+.test{margin-top:60px; border-top:4px solid var(--ink); padding-top:22px}
+.q{
+  background:#fff; border:2px solid var(--ink); border-radius:14px;
+  box-shadow:var(--shadow); padding:15px 16px; margin:16px 0;
+}
+.q .qn{
+  font-family:"Baloo 2"; font-weight:700; font-size:14px; color:#fff;
+  background:var(--ink); border-radius:999px; padding:2px 11px; display:inline-block; margin-bottom:8px;
+}
+.q .stem{font-size:18px; margin:0 0 10px; font-weight:500}
+.q .stem .num{font-size:20px}
+.opts{display:grid; gap:7px}
+.opt{
+  display:flex; gap:9px; align-items:center; text-align:left;
+  background:#fff; border:2px solid #C3D2E8; border-radius:10px;
+  padding:9px 12px; cursor:pointer; font-size:17px; font-family:"Karla",sans-serif;
+  color:var(--ink);
+}
+.opt:hover{border-color:var(--ink); background:#FFFCEB}
+.opt .k{
+  font-family:"Baloo 2"; font-weight:700; background:#EFF4FC;
+  border-radius:7px; width:26px; height:26px; flex:0 0 26px;
+  display:flex; align-items:center; justify-content:center; font-size:15px;
+}
+.opt.sel{border-color:var(--ink); background:var(--lemon)}
+.opt.sel .k{background:#fff}
+.opt.correct{border-color:var(--ok); background:#E4F7ED}
+.opt.incorrect{border-color:var(--no); background:#FFECEF}
+.tfrow{display:flex; gap:10px; flex-wrap:wrap}
+.tfrow .opt{flex:1; min-width:120px; justify-content:center; font-weight:700}
+.feedback{
+  margin-top:10px; padding:10px 12px; border-radius:10px;
+  font-size:16px; display:none;
+}
+.feedback.show{display:block}
+.feedback.good{background:#E4F7ED; border-left:5px solid var(--ok)}
+.feedback.bad{background:#FFECEF; border-left:5px solid var(--no)}
+.feedback b{font-family:"Baloo 2"; font-size:17px}
+
+.scorecard{
+  border:3px solid var(--ink); border-radius:16px; background:var(--lemon);
+  padding:20px; text-align:center; box-shadow:var(--shadow); margin:22px 0; display:none;
+}
+.scorecard.show{display:block}
+.scorecard .pct{font-family:"Baloo 2"; font-weight:800; font-size:64px; line-height:1}
+.scorecard .msg{font-size:18px; max-width:46ch; margin:6px auto 0}
+
+.toc{display:flex; flex-wrap:wrap; gap:8px; margin:20px 0 0}
+.toc a{
+  font-family:"Baloo 2"; font-weight:600; font-size:15px; text-decoration:none;
+  background:#fff; border:2px solid var(--ink); border-radius:999px;
+  padding:5px 13px; color:var(--ink);
+}
+.toc a:hover{background:var(--sky)}
+.footnote{color:var(--soft); font-size:15px; text-align:center; margin-top:44px}
+
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important; animation:none !important}
+}
+</style>
+</head>
+<body>
+<div class="sheet">
+<header class="hero">
+  <p class="kicker">Maths · Term 1 · Adiaha</p>
+  <h1>Whole Numbers,<span>all the way up</span></h1>
+  <p class="lede">Everything from your September notes in one place — reading giant numbers, rounding them, estimating with them, and squaring them. Tap a digit to start.</p>
+
+  <div class="tilestrip" id="heroTiles" aria-label="The number 7,835,629 — tap a digit"></div>
+  <div class="readout" id="heroOut">
+    <span class="big">Tap any digit above.</span>
+    It will tell you what place it sits in, what it is actually worth, and how you say it.
+  </div>
+
+  <nav class="toc">
+    <a href="#l1">1 · Inside a number</a>
+    <a href="#l2">2 · Saying it out loud</a>
+    <a href="#l3">3 · Expanded form</a>
+    <a href="#l4">4 · Bigger or smaller</a>
+    <a href="#l5">5 · Rounding</a>
+    <a href="#l6">6 · Estimating</a>
+    <a href="#l7">7 · Squares &amp; roots</a>
+    <a href="#test">The test</a>
+  </nav>
+</header>
+
+<!-- ======================= LESSON 1 ======================= -->
+<section class="lesson" id="l1">
+  <div class="lesson-head"><div class="lesson-num">1</div><h2>Inside a number</h2></div>
+  <p>A <strong>numeral</strong> is the symbol we write down for a number. It is built out of <strong>digits</strong> — and there are only ten digits in the whole world: 0 1 2 3 4 5 6 7 8 9. Every number ever written uses just those ten, arranged in different seats.</p>
+
+  <div class="card">
+    <h4>Periods: the commas do a job</h4>
+    <p>A <strong>period</strong> is a group of three digits. Commas mark where one period ends and the next begins, counting from the right. That's the only reason a number like 2890000 is hard to read — nobody put the commas in. Write it as <span class="num">2,890,000</span> and your eyes do the work for you.</p>
+    <div class="tablewrap">
+      <table class="pv">
+        <tr>
+          <th colspan="3" class="per-m">Millions period</th>
+          <th colspan="3" class="per-t">Thousands period</th>
+          <th colspan="3" class="per-o">Ones period</th>
+        </tr>
+        <tr>
+          <th class="per-m">hundred<br>millions</th><th class="per-m">ten<br>millions</th><th class="per-m">millions</th>
+          <th class="per-t">hundred<br>thousands</th><th class="per-t">ten<br>thousands</th><th class="per-t">thousands</th>
+          <th class="per-o">hundreds</th><th class="per-o">tens</th><th class="per-o">units</th>
+        </tr>
+        <tr>
+          <td class="d"></td><td class="d"></td><td class="d">7</td>
+          <td class="d">8</td><td class="d">3</td><td class="d">5</td>
+          <td class="d">6</td><td class="d">2</td><td class="d">9</td>
+        </tr>
+      </table>
+    </div>
+    <p style="margin-bottom:0">Every period has the same three seats inside it: <span class="hl">hundreds, tens, units</span>. That pattern just repeats forever — hundred-thousands, ten-thousands, thousands. Hundred-millions, ten-millions, millions.</p>
+  </div>
+
+  <div class="card trap-box">
+    <h4>The trap that costs the most marks</h4>
+    <p><strong>Place</strong> and <strong>value</strong> are two different answers to two different questions.</p>
+    <ul class="tight">
+      <li>In <span class="num">209,423</span>, the <strong>2</strong> is in the <span class="hl">hundred-thousands place</span>. That's its <em>place</em> — its address.</li>
+      <li>Its <strong>value</strong> is <span class="num">200,000</span>. That's what it's actually worth — its address plus how many.</li>
+    </ul>
+    <p style="margin-bottom:0">Hold on to this. In Lesson 5 you'll see how mixing these two up turns a rounding question into a wrong answer, and it is the single most common slip in your book.</p>
+  </div>
+</section>
+
+<!-- ======================= LESSON 2 ======================= -->
+<section class="lesson" id="l2">
+  <div class="lesson-head"><div class="lesson-num">2</div><h2>Saying it out loud</h2></div>
+  <p>Reading a giant number is not one hard job. It's three easy jobs stuck together. Read each period as an ordinary three-digit number, then say the period's surname — <em>million</em>, <em>thousand</em>, or nothing at all for the ones period.</p>
+
+  <div class="card">
+    <div class="btnrow">
+      <button class="btn" id="wordsNext">Show me another number</button>
+      <button class="btn ghost" id="wordsReveal">Reveal the words</button>
+    </div>
+    <div id="wordsBox"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card rule-box">
+      <h4>Zero is a placeholder, not a word</h4>
+      <p style="margin-bottom:0">In <span class="num">6,030,584</span> the thousands period is 030, so you say "thirty thousand" — not "zero thirty". The 0 is holding a seat so the 3 stays in the ten-thousands. Never say a period that is all zeros: <span class="num">8,395,200</span> ends "two hundred", and you never mention the empty units and tens.</p>
+    </div>
+    <div class="card quiet">
+      <h4>Words back into digits</h4>
+      <p>"Two million, six hundred and fourteen thousand and ninety" — build it period by period, and pad each period to three digits with zeros:</p>
+      <p class="num" style="font-size:20px;margin-bottom:0">2 | 614 | 090 → 2,614,090</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= LESSON 3 ======================= -->
+<section class="lesson" id="l3">
+  <div class="lesson-head"><div class="lesson-num">3</div><h2>Standard form and expanded form</h2></div>
+  <p><strong>Standard form</strong> is the everyday way: digits, with commas splitting the periods — <span class="num">2,827,595</span>. <strong>Expanded form</strong> pulls the number apart and shows what every single digit is worth, added back together.</p>
+
+  <div class="card">
+    <div class="btnrow">
+      <button class="btn" id="expBreak">Break it apart</button>
+      <button class="btn ghost" id="expNext">Different number</button>
+    </div>
+    <div id="expBox"></div>
+  </div>
+
+  <div class="card quiet">
+    <h4>Two ways to write the same expansion</h4>
+    <p style="margin-bottom:0">As a sum of values: <span class="num">2,000,000 + 800,000 + 20,000 + 7,000 + 500 + 90 + 5</span>.<br>
+    As digit × place value: <span class="num">(2×1,000,000) + (8×100,000) + (2×10,000) + (7×1,000) + (5×100) + (9×10) + (5×1)</span>.<br>
+    A digit of 0 contributes nothing, so you simply leave that part out.</p>
+  </div>
+</section>
+
+<!-- ======================= LESSON 4 ======================= -->
+<section class="lesson" id="l4">
+  <div class="lesson-head"><div class="lesson-num">4</div><h2>Which one is bigger?</h2></div>
+  <p>Comparing numbers has a rhythm to it, and if you follow it you never have to guess.</p>
+
+  <div class="card rule-box">
+    <h4>The two-step compare</h4>
+    <ul class="tight">
+      <li><strong>Step 1 — count the digits.</strong> More digits wins. <span class="num">152,014</span> beats <span class="num">98,999</span> without reading a single digit.</li>
+      <li><strong>Step 2 — same number of digits? Walk left to right.</strong> Stop at the first place where they differ; that place decides it. <span class="num">152,014</span> vs <span class="num">150,214</span>: same 1, same 5, then 2 beats 0. Done — the rest doesn't matter.</li>
+    </ul>
+    <p style="margin-bottom:0">The symbol always opens its big mouth towards the bigger number: <span class="num">152,014 &gt; 150,214</span>.</p>
+  </div>
+
+  <div class="card">
+    <h4>Try it — pick the symbol</h4>
+    <div id="cmpBox"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card trap-box">
+      <h4>Negative numbers flip your instinct</h4>
+      <p>On a number line, numbers get smaller as you go left, and negatives live to the left of zero. So the "bigger-looking" negative is actually the smaller one.</p>
+      <p style="margin-bottom:0"><span class="num">−32 &lt; −19</span>, because −32 is further left. Think of it as temperature: −32°C is colder, so it's less. And every negative is smaller than every positive: <span class="num">15 &gt; −20</span> always.</p>
+    </div>
+    <div class="card quiet">
+      <h4>Number names have sizes too</h4>
+      <p>When a question mixes words and digits, turn the words into digits first.</p>
+      <ul class="tight" style="margin-bottom:0">
+        <li>half a million = <span class="num">500,000</span></li>
+        <li>one million = <span class="num">1,000,000</span> (6 zeros)</li>
+        <li>one billion = <span class="num">1,000,000,000</span> (9 zeros)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h4>Order these from smallest to largest</h4>
+    <p style="margin-top:0;font-size:16px;color:var(--soft)">Drag each number into a slot. Tap the ✕ on a number to send it back.</p>
+    <div id="orderPractice"></div>
+    <div class="btnrow">
+      <button class="btn" id="orderCheck">Check my order</button>
+      <button class="btn ghost" id="orderReset">Start over</button>
+    </div>
+    <div class="feedback" id="orderFb"></div>
+  </div>
+</section>
+<!-- ======================= LESSON 5 ======================= -->
+<section class="lesson" id="l5">
+  <div class="lesson-head"><div class="lesson-num">5</div><h2>Rounding: tidying a number up</h2></div>
+  <p>Rounding means swapping an awkward number for a nearby tidy one. <span class="num">7,254</span> people is awkward. "About <span class="num">7,000</span>" is easy to hold in your head, and it's close enough to be useful.</p>
+
+  <div class="card trap-box">
+    <h4>Read this bit twice</h4>
+    <p>Round <span class="num">74,296</span> to the nearest thousand. The answer is <span class="num">74,000</span> — <strong>not</strong> <span class="num">4,000</span>.</p>
+    <p><span class="num">4,000</span> is the <em>value of the digit</em> in the thousands place. That's a Lesson 1 question, and it's a different question. Rounding never throws away the front of a number.</p>
+    <p style="margin-bottom:0">A rounded number is <span class="hl coral">always about the same size as the number you started with</span>. If your answer is dramatically smaller — 74,296 shrinking to 4,000, or 8,425,241 shrinking to 800,000 — something has gone wrong. Check the size before you check anything else.</p>
+  </div>
+
+  <div class="card rule-box">
+    <h4>The four moves, every single time</h4>
+    <ul class="tight">
+      <li><strong>Find the target.</strong> The place you were asked to round to. Nearest 10,000? Put your finger on the ten-thousands digit.</li>
+      <li><strong>Look at the decider.</strong> The one digit immediately to the right of your finger. Only that one. Nothing further along matters at all.</li>
+      <li><strong>Decide.</strong> Decider is 0, 1, 2, 3 or 4 → the target digit stays as it is. Decider is 5, 6, 7, 8 or 9 → the target digit goes up by one.</li>
+      <li><strong>Zero the tail.</strong> Every digit to the <em>right</em> of the target becomes 0. Every digit to the <em>left</em> of the target is copied down untouched.</li>
+    </ul>
+    <p style="margin-bottom:0">That last line is the one that saves you. Copy the front of the number down, exactly as it was.</p>
+  </div>
+
+  <div class="card">
+    <h4>Rounding lab</h4>
+    <p style="margin-top:0;font-size:16px;color:var(--soft)">Pick a number, then pick what to round it to. Watch where it lands on the line.</p>
+    <div class="btnrow" id="roundNums"></div>
+    <div class="btnrow" id="roundPlaces"></div>
+    <div id="roundDigits"></div>
+    <div class="roundline" id="roundLine"></div>
+    <div class="verdict" id="roundVerdict"></div>
+    <div id="roundWhy" style="font-size:16px;color:var(--soft)"></div>
+  </div>
+
+  <div class="grid2">
+    <div class="card quiet">
+      <h4>Exactly halfway? Go up.</h4>
+      <p style="margin-bottom:0">A decider of 5 means the number sits exactly on the midpoint, and the rule is to round <em>up</em>. <span class="num">12,750</span> to the nearest hundred is <span class="num">12,800</span>.</p>
+    </div>
+    <div class="card quiet">
+      <h4>When 9 rounds up, it spills</h4>
+      <p style="margin-bottom:0"><span class="num">9,842,160</span> to the nearest million: the target is 9, the decider is 8, so 9 goes up — and 9 + 1 is 10, which pushes into the next column. You get <span class="num">10,000,000</span>. That's correct, not a mistake.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h4>Three worked examples from your own book</h4>
+    <p style="margin:0 0 6px"><span class="num">57,624</span> to the nearest <strong>10,000</strong> → target is the <span class="hl">5</span>, decider is the <span class="hl coral">7</span>, so 5 becomes 6 → <span class="num">60,000</span>. <em>(58,000 would be the nearest thousand — a different question.)</em></p>
+    <p style="margin:0 0 6px"><span class="num">12,746,123</span> to the nearest <strong>10</strong> → target is the <span class="hl">2</span>, decider is the <span class="hl coral">3</span>, so 2 stays → <span class="num">12,746,120</span>. The whole front of the number comes along for the ride.</p>
+    <p style="margin:0"><span class="num">825,321</span> to the nearest <strong>10,000</strong> → target is the <span class="hl">2</span>, decider is the <span class="hl coral">5</span>, so 2 becomes 3 → <span class="num">830,000</span>.</p>
+  </div>
+</section>
+
+<!-- ======================= LESSON 6 ======================= -->
+<section class="lesson" id="l6">
+  <div class="lesson-head"><div class="lesson-num">6</div><h2>Estimating an answer</h2></div>
+  <p>An estimate is a deliberately rough answer you can work out in your head. You use it to check whether the answer you calculated is sensible. If you estimate about 300 and your calculator says 3,630, you know to go back and look.</p>
+  <p>The symbol <span class="num">≈</span> means "is about equal to". Use it instead of = whenever you're estimating, so your teacher knows you meant to be rough.</p>
+
+  <div class="card rule-box">
+    <h4>Round first, calculate second — never the other way round</h4>
+    <ul class="tight" style="margin-bottom:0">
+      <li><strong>Adding and subtracting:</strong> round each number to the nearest 10, 100 or 1,000 — whichever keeps it easy. <span class="num">48 + 103 ≈ 50 + 100 = 150</span>.</li>
+      <li><strong>Multiplying:</strong> round each number to its first digit and let the zeros do the work. <span class="num">33 × 11 ≈ 30 × 10 = 300</span>.</li>
+      <li><strong>Dividing:</strong> this one is different — you need <span class="hl">compatible numbers</span>, a pair that divides exactly. You're allowed to round up <em>or</em> down to get there. <span class="num">223 ÷ 6 ≈ 225 ÷ 5 = 45</span>, because 225 and 5 are friends. Rounding to 220 ÷ 6 would leave you stuck.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4>Estimation lab</h4>
+    <p style="margin-top:0;font-size:16px;color:var(--soft)">Work each one out in your head first, then reveal the working.</p>
+    <div class="btnrow">
+      <button class="btn" id="estNext">Next calculation</button>
+      <button class="btn ghost" id="estShow">Show the working</button>
+    </div>
+    <div id="estBox"></div>
+  </div>
+
+  <div class="card quiet">
+    <h4>Why an estimate is never "wrong"</h4>
+    <p style="margin-bottom:0"><span class="num">223 ÷ 6</span> is really 37.2, and your estimate said 45. That's fine — an estimate is meant to tell you the answer is somewhere in the thirties or forties, not in the hundreds. What would be wrong is estimating 4, or 400.</p>
+  </div>
+</section>
+
+<!-- ======================= LESSON 7 ======================= -->
+<section class="lesson" id="l7">
+  <div class="lesson-head"><div class="lesson-num">7</div><h2>Square numbers and square roots</h2></div>
+  <p>This topic is named after the shape, and that's the whole secret. A <strong>square number</strong> is a pile of dots that can be arranged into a perfect square with no gaps and none left over.</p>
+
+  <div class="card">
+    <h4>Square builder</h4>
+    <p style="margin-top:0;font-size:16px;color:var(--soft)">Drag the slider to change the side length. The dots always make a square.</p>
+    <div class="sqwrap">
+      <div class="sqgrid" id="sqGrid"></div>
+      <div class="sqfacts" id="sqFacts"></div>
+    </div>
+    <input type="range" id="sqSlider" min="1" max="15" value="4" step="1" style="width:100%;max-width:380px;margin-top:14px" aria-label="Side length of the square">
+  </div>
+
+  <div class="grid2">
+    <div class="card quiet">
+      <h4>Two symbols, one idea</h4>
+      <p><span class="num">4² = 16</span> reads "four squared is sixteen". The little 2 means <em>use it twice in a multiplication</em>, so 4 × 4. It does <strong>not</strong> mean 4 × 2.</p>
+      <p style="margin-bottom:0"><span class="num">√16 = 4</span> reads "the square root of sixteen is four". It asks the question backwards: <em>what side length would make a square of 16?</em> Squaring and rooting undo each other, like ×2 and ÷2.</p>
+    </div>
+    <div class="card win-box">
+      <h4>Know these fifteen by heart</h4>
+      <p style="margin:0;font-size:16px">Everything else in this topic gets easy once these are automatic.</p>
+      <div class="sqtable" id="sqTable"></div>
+    </div>
+  </div>
+
+  <h3 style="margin-top:34px">Roots of numbers that aren't perfect squares</h3>
+  <p>Most numbers can't make a perfect square. 46 dots will always leave you with an untidy edge. So <span class="num">√46</span> isn't a whole number — but you can <em>estimate</em> it, and that's all that's being asked for.</p>
+
+  <div class="card rule-box">
+    <h4>Trap it between two perfect squares</h4>
+    <ul class="tight" style="margin-bottom:0">
+      <li>Find the nearest perfect square <strong>below</strong> and the nearest one <strong>above</strong>. For 46 that's 36 and 49.</li>
+      <li>So <span class="num">√46</span> is between <span class="num">6</span> and <span class="num">7</span>.</li>
+      <li>46 is much closer to 49 than to 36, so <span class="num">√46 ≈ 7</span>.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h4>Root trapper</h4>
+    <p style="margin-top:0;font-size:16px;color:var(--soft)">Pick a number and see which two perfect squares it lives between.</p>
+    <div class="btnrow" id="rootNums"></div>
+    <div class="roundline" id="rootLine"></div>
+    <div class="verdict" id="rootVerdict"></div>
+  </div>
+
+  <div class="card trap-box">
+    <h4>Three mistakes to hunt down in your own working</h4>
+    <p><strong>1. Roots don't add up.</strong> <span class="num">√a + √b</span> is <em>not</em> <span class="num">√(a+b)</span>. You must finish each root separately, then add the answers. So <span class="num">√48</span> stays a single root — it's about 7, because 48 is just under 49. It is <em>not</em> 49 + 64.</p>
+    <p><strong>2. A minus sign stays a minus sign.</strong> <span class="num">√9 − √49 = 3 − 7 = −4</span>, not 4. When the second number is bigger, the answer is negative — and negative answers are allowed. Same with <span class="num">√29 − √64 ≈ 5 − 8 = −3</span>.</p>
+    <p style="margin-bottom:0"><strong>3. Small numbers still need the rule.</strong> <span class="num">√8</span> is not 1. It sits between <span class="num">√4 = 2</span> and <span class="num">√9 = 3</span>, and 8 is nearly 9, so <span class="num">√8 ≈ 3</span>. So <span class="num">√16 + √8 − √144 ≈ 4 + 3 − 12 = −5</span>.</p>
+  </div>
+
+  <div class="card win-box">
+    <h4>The tidy ones are worth spotting</h4>
+    <p style="margin-bottom:0">Some expressions are built to come out neatly. <span class="num">√144 ÷ √100 = 12 ÷ 10</span>, which is <span class="num">1 <sup>2</sup>⁄<sub>10</sub> = 1 <sup>1</sup>⁄<sub>5</sub></span>. And <span class="num">√15 × √80 ≈ √16 × √81 = 4 × 9 = 36</span> — round each number to the nearest perfect square first, then multiply the roots.</p>
+  </div>
+</section>
+<!-- ======================= TEST ======================= -->
+<section class="test" id="test">
+  <h2>The whole-numbers test</h2>
+  <p>Twenty-three questions, covering everything above. Nothing here is a giveaway — several of them are built around the exact slips that cost marks in your book, so read each one twice. Answer every question, then mark it.</p>
+  <p style="color:var(--soft);font-size:16px">Drag questions: drag a card into place, and tap the ✕ on a card to send it back to the pool.</p>
+
+  <div id="quiz"></div>
+
+  <div class="btnrow" style="justify-content:center;margin-top:24px">
+    <button class="btn" id="markBtn">Mark my test</button>
+    <button class="btn ghost" id="resetBtn">Clear and start again</button>
+  </div>
+
+  <div class="scorecard" id="scorecard">
+    <div class="pct" id="scorePct">0%</div>
+    <div class="msg" id="scoreMsg"></div>
+  </div>
+</section>
+
+<p class="footnote">Made for Adiaha — Whole Numbers, Term 1.</p>
+</div>
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s);};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+var fmt=function(n){return Number(n).toLocaleString('en-US');};
+var el=function(tag,cls,txt){var e=document.createElement(tag); if(cls)e.className=cls; if(txt!=null)e.textContent=txt; return e;};
+
+/* ---------------- number words ---------------- */
+var ONES=['','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+var TENS=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+function three(n){
+  var h=Math.floor(n/100), r=n%100, s='';
+  if(h) s=ONES[h]+' hundred';
+  if(r){
+    if(h) s+=' and ';
+    s+= (r<20)? ONES[r] : TENS[Math.floor(r/10)]+(r%10? '-'+ONES[r%10]:'');
+  }
+  return s;
+}
+function words(n){
+  if(n===0) return 'zero';
+  var g=[{v:Math.floor(n/1e9),n:'billion'},{v:Math.floor(n/1e6)%1000,n:'million'},{v:Math.floor(n/1e3)%1000,n:'thousand'},{v:n%1000,n:''}];
+  var parts=[];
+  for(var i=0;i<g.length;i++){ if(g[i].v) parts.push(three(g[i].v)+(g[i].n? ' '+g[i].n:'')); }
+  if(parts.length===1) return parts[0];
+  var last=parts.pop();
+  var joiner=(n%1000>0 && n%1000<100)? ' and ' : ', ';
+  return parts.join(', ')+joiner+last;
+}
+var PLACES=['units','tens','hundreds','thousands','ten thousands','hundred thousands','millions','ten millions','hundred millions'];
+var PERIODS=['ones period','ones period','ones period','thousands period','thousands period','thousands period','millions period','millions period','millions period'];
+
+/* ---------------- drag engine ---------------- */
+var drag=null, ghost=null;
+function clearOver(){ $$('.dz.over').forEach(function(z){z.classList.remove('over');}); }
+function homeOf(c){ return document.getElementById(c.dataset.home); }
+function addX(chip){
+  if(chip.querySelector('.x')) return;
+  var b=el('button','x','✕'); b.type='button'; b.setAttribute('aria-label','Send this back to the pool');
+  b.addEventListener('click',function(e){ e.stopPropagation(); var h=homeOf(chip); b.remove(); chip.classList.remove('right','wrong'); if(h) h.appendChild(chip); });
+  chip.appendChild(b);
+}
+function removeX(chip){ var b=chip.querySelector('.x'); if(b) b.remove(); }
+function zoneAt(t){ var e=document.elementFromPoint(t.clientX,t.clientY); return e? e.closest('.dz') : null; }
+function dropInto(z,chip){
+  if(!z||!chip) return;
+  var cap=parseInt(z.dataset.cap||'99',10);
+  var cur=$$('.chip',z);
+  if(cur.indexOf(chip)>=0) return;
+  if(cur.length>=cap){ var old=cur[0]; removeX(old); old.classList.remove('right','wrong'); var h=homeOf(old); if(h) h.appendChild(old); }
+  chip.classList.remove('right','wrong');
+  addX(chip); z.appendChild(chip);
+}
+function mkChip(text,data){
+  var c=el('span','chip');
+  c.appendChild(el('span',null,text));
+  c.draggable=true;
+  if(data) Object.keys(data).forEach(function(k){ c.dataset[k]=data[k]; });
+  c.addEventListener('dragstart',function(e){
+    drag=c; c.classList.add('dragging');
+    try{ e.dataTransfer.setData('text/plain','chip'); e.dataTransfer.effectAllowed='move'; }catch(err){}
+  });
+  c.addEventListener('dragend',function(){ c.classList.remove('dragging'); drag=null; clearOver(); });
+  c.addEventListener('touchstart',function(e){
+    if(e.target.classList.contains('x')) return;
+    e.preventDefault();
+    drag=c; c.classList.add('dragging');
+    ghost=c.cloneNode(true); ghost.classList.add('ghost'); ghost.classList.remove('dragging');
+    document.body.appendChild(ghost);
+    var t=e.touches[0]; ghost.style.left=t.clientX+'px'; ghost.style.top=t.clientY+'px';
+    document.addEventListener('touchmove',tMove,{passive:false});
+    document.addEventListener('touchend',tEnd);
+  },{passive:false});
+  return c;
+}
+function tMove(e){
+  e.preventDefault();
+  var t=e.touches[0];
+  if(ghost){ ghost.style.left=t.clientX+'px'; ghost.style.top=t.clientY+'px'; }
+  clearOver(); var z=zoneAt(t); if(z) z.classList.add('over');
+}
+function tEnd(e){
+  document.removeEventListener('touchmove',tMove);
+  document.removeEventListener('touchend',tEnd);
+  var t=e.changedTouches[0];
+  if(ghost){ ghost.style.display='none'; }
+  var z=zoneAt(t);
+  if(ghost){ ghost.remove(); ghost=null; }
+  if(drag){ drag.classList.remove('dragging'); if(z) dropInto(z,drag); }
+  clearOver(); drag=null;
+}
+function mkZone(node,cap){
+  node.classList.add('dz');
+  if(cap) node.dataset.cap=cap;
+  node.addEventListener('dragover',function(e){ e.preventDefault(); node.classList.add('over'); });
+  node.addEventListener('dragleave',function(){ node.classList.remove('over'); });
+  node.addEventListener('drop',function(e){ e.preventDefault(); node.classList.remove('over'); dropInto(node,drag); });
+  return node;
+}
+function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(Math.random()*(i+1)); var t=a[i];a[i]=a[j];a[j]=t; } return a; }
+
+/* ---------------- hero tiles ---------------- */
+function digitTiles(host,numStr,onPick){
+  host.innerHTML='';
+  var digits=numStr.replace(/,/g,'');
+  var di=0;
+  for(var i=0;i<numStr.length;i++){
+    if(numStr[i]===','){ var c=el('div','tile comma',','); host.appendChild(c); continue; }
+    var idx=di, pos=digits.length-1-di;
+    var t=el('div','tile',numStr[i]);
+    t.setAttribute('role','button'); t.tabIndex=0;
+    (function(t,idx,pos,d){
+      function go(){ $$('.tile',host).forEach(function(x){x.classList.remove('on');}); t.classList.add('on'); onPick(idx,pos,d); }
+      t.addEventListener('click',go);
+      t.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); go(); } });
+    })(t,idx,pos,parseInt(numStr[i],10));
+    host.appendChild(t); di++;
+  }
+}
+var heroOut=$('#heroOut');
+digitTiles($('#heroTiles'),'7,835,629',function(idx,pos,d){
+  var val=d*Math.pow(10,pos);
+  heroOut.innerHTML='<span class="big">The '+d+' sits in the '+PLACES[pos]+' place.</span>'+
+    'It belongs to the '+PERIODS[pos]+'. Its value is <span class="num">'+fmt(val)+'</span>'+
+    (d===0? ' — a zero is worth nothing here, but it holds the seat so the other digits stay put.' :
+     ', which you say as <strong>'+words(val)+'</strong>.');
+});
+
+/* ---------------- lesson 2: words machine ---------------- */
+var WNUMS=[1089657,5239500,6030584,1043495,8395200,9532953,2827595,12674218,2614090];
+var wi=0, wRevealed=false;
+function renderWords(){
+  var n=WNUMS[wi], s=fmt(n), box=$('#wordsBox');
+  var groups=s.split(',');
+  var names=['','thousand','million','billion'];
+  var html='<div class="num" style="font-size:clamp(26px,6vw,38px);margin-bottom:6px">';
+  for(var i=0;i<groups.length;i++){
+    var rank=groups.length-1-i;
+    var cls=rank===0?'mint':(rank===1?'':'coral');
+    html+='<span class="hl '+cls+'">'+groups[i]+'</span>'+(i<groups.length-1?'<span style="opacity:.4">,</span>':'');
+  }
+  html+='</div>';
+  if(wRevealed){
+    html+='<div style="margin-top:10px">';
+    for(var j=0;j<groups.length;j++){
+      var rank2=groups.length-1-j, v=parseInt(groups[j],10);
+      if(v===0) continue;
+      html+='<div style="margin:3px 0"><span class="num">'+groups[j]+'</span> → '+three(v)+(names[rank2]?' '+names[rank2]:'')+'</div>';
+    }
+    html+='<div style="margin-top:10px;font-family:Baloo 2,sans-serif;font-weight:700;font-size:20px;line-height:1.3">'+words(n)+'</div></div>';
+  } else {
+    html+='<p style="color:var(--soft);margin:6px 0 0">Read each coloured period on its own, then add its surname.</p>';
+  }
+  box.innerHTML=html;
+}
+$('#wordsNext').addEventListener('click',function(){ wi=(wi+1)%WNUMS.length; wRevealed=false; renderWords(); });
+$('#wordsReveal').addEventListener('click',function(){ wRevealed=!wRevealed; renderWords(); });
+renderWords();
+
+/* ---------------- lesson 3: expanded form ---------------- */
+var ENUMS=[2827595,4706342,1043495,9532953,320406];
+var ei=0, eBroken=false;
+function renderExp(){
+  var n=ENUMS[ei], s=String(n), box=$('#expBox');
+  var html='<div class="num" style="font-size:clamp(26px,6vw,38px)">'+fmt(n)+'</div>';
+  if(eBroken){
+    var vals=[],prods=[];
+    for(var i=0;i<s.length;i++){
+      var d=parseInt(s[i],10), pos=s.length-1-i;
+      if(d===0) continue;
+      vals.push(fmt(d*Math.pow(10,pos)));
+      prods.push('('+d+'×'+fmt(Math.pow(10,pos))+')');
+    }
+    html+='<p style="margin:10px 0 2px">Sum of the values:</p><div class="num" style="font-size:19px">'+vals.join(' + ')+'</div>';
+    html+='<p style="margin:12px 0 2px">Digit × place value:</p><div class="num" style="font-size:17px">'+prods.join(' + ')+'</div>';
+    if(s.indexOf('0')>=0) html+='<p style="color:var(--soft);margin-top:10px">Notice the 0 never appears — zero of anything adds nothing, so it gets left out of the expansion entirely.</p>';
+  } else {
+    html+='<p style="color:var(--soft);margin:6px 0 0">Predict the parts in your head first.</p>';
+  }
+  box.innerHTML=html;
+}
+$('#expBreak').addEventListener('click',function(){ eBroken=!eBroken; renderExp(); });
+$('#expNext').addEventListener('click',function(){ ei=(ei+1)%ENUMS.length; eBroken=false; renderExp(); });
+renderExp();
+
+/* ---------------- lesson 4: compare ---------------- */
+var CMP=[[15,-20],[-6,-7],[-32,-19],[152014,150214],[98999,152014],[120923,12902],[-13,12]];
+var ci=0;
+function renderCmp(){
+  var p=CMP[ci], box=$('#cmpBox');
+  box.innerHTML='<div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:6px 0">'+
+    '<span class="num" style="font-size:24px">'+fmt(p[0])+'</span>'+
+    '<span id="cmpSlot" class="num" style="font-size:26px;min-width:44px;text-align:center;border:2px dashed var(--soft);border-radius:8px;padding:2px 10px">?</span>'+
+    '<span class="num" style="font-size:24px">'+fmt(p[1])+'</span>'+
+    '<button class="chipbtn" data-s="&lt;">&lt;</button><button class="chipbtn" data-s="&gt;">&gt;</button>'+
+    '<button class="btn ghost" id="cmpNext">Next pair</button></div>'+
+    '<div id="cmpFb" style="min-height:26px;font-weight:700"></div>';
+  $$('.chipbtn',box).forEach(function(b){
+    b.addEventListener('click',function(){
+      var want=p[0]<p[1]?'<':'>';
+      var got=b.dataset.s==='&lt;'?'<':b.textContent;
+      got=b.textContent.trim();
+      $('#cmpSlot',box).textContent=got;
+      var ok=(got===want);
+      $('#cmpFb',box).innerHTML= ok
+        ? '<span style="color:var(--ok)">Correct — the symbol opens towards '+fmt(Math.max(p[0],p[1]))+'.</span>'
+        : '<span style="color:var(--no)">Not quite. '+fmt(Math.max(p[0],p[1]))+' is the larger one'+((p[0]<0||p[1]<0)?', because it sits further right on the number line':'')+', so it should be '+fmt(p[0])+' '+want+' '+fmt(p[1])+'.</span>';
+    });
+  });
+  $('#cmpNext',box).addEventListener('click',function(){ ci=(ci+1)%CMP.length; renderCmp(); });
+}
+renderCmp();
+
+/* ---------------- lesson 4: order practice ---------------- */
+var ORDER_ITEMS=[{t:'97,000',v:97000},{t:'half a million',v:500000},{t:'610,000',v:610000},{t:'2 million',v:2000000},{t:'1 billion',v:1000000000}];
+function buildOrder(){
+  var host=$('#orderPractice'); host.innerHTML='';
+  var pool=el('div','pool'); pool.id='orderPool'; host.appendChild(pool);
+  shuffle(ORDER_ITEMS).forEach(function(it){ pool.appendChild(mkChip(it.t,{v:it.v,home:'orderPool'})); });
+  var slots=el('div','slots');
+  var caps=['smallest','','','','largest'];
+  for(var i=0;i<5;i++){
+    var s=el('div','slot');
+    var z=mkZone(el('div'),1); z.dataset.idx=i;
+    s.appendChild(z);
+    s.appendChild(el('div','cap',caps[i]|| (i+1)+'nd'));
+    s.lastChild.textContent = i===0?'smallest':(i===4?'largest':String(i+1)+'.');
+    slots.appendChild(s);
+  }
+  host.appendChild(slots);
+  $('#orderFb').className='feedback';
+}
+$('#orderCheck').addEventListener('click',function(){
+  var zones=$$('#orderPractice .dz'), sorted=ORDER_ITEMS.slice().sort(function(a,b){return a.v-b.v;});
+  var filled=0, ok=true;
+  zones.forEach(function(z,i){
+    var c=$('.chip',z);
+    if(!c){ ok=false; return; }
+    filled++;
+    var right=parseInt(c.dataset.v,10)===sorted[i].v;
+    c.classList.add(right?'right':'wrong');
+    if(!right) ok=false;
+  });
+  var fb=$('#orderFb');
+  fb.className='feedback show '+(ok?'good':'bad');
+  fb.innerHTML= filled<5 ? '<b>Not finished.</b> Every slot needs a card before you can check.'
+    : (ok? '<b>Perfect.</b> Turning the words into digits first is what makes this easy: 97,000 · 500,000 · 610,000 · 2,000,000 · 1,000,000,000.'
+         : '<b>Close.</b> The green cards are in the right slot. Write each one in digits and count the zeros: a million has 6, a billion has 9.');
+});
+$('#orderReset').addEventListener('click',buildOrder);
+buildOrder();
+
+/* ---------------- lesson 5: rounding lab ---------------- */
+var RNUMS=[7254,74296,57624,825321,8425241,12746123,9842160,365043];
+var RPLACES=[10,100,1000,10000,100000,1000000];
+var rNum=74296, rPlace=1000;
+function placeLabel(p){ return 'nearest '+fmt(p); }
+function renderRoundButtons(){
+  var nb=$('#roundNums'); nb.innerHTML='';
+  RNUMS.forEach(function(n){
+    var b=el('button','chipbtn'+(n===rNum?' on':''),fmt(n));
+    b.addEventListener('click',function(){ rNum=n; if(rPlace>=n) rPlace=1000; renderRound(); });
+    nb.appendChild(b);
+  });
+  var pb=$('#roundPlaces'); pb.innerHTML='';
+  RPLACES.forEach(function(p){
+    if(p>=rNum) return;
+    var b=el('button','chipbtn'+(p===rPlace?' on':''),placeLabel(p));
+    b.addEventListener('click',function(){ rPlace=p; renderRound(); });
+    pb.appendChild(b);
+  });
+}
+function edgeShift(pct){ return pct<14? 'translateX(0)' : (pct>86? 'translateX(-100%)' : 'translateX(-50%)'); }
+function renderRound(){
+  renderRoundButtons();
+  var n=rNum, p=rPlace, s=String(n);
+  var lower=Math.floor(n/p)*p, upper=lower+p, mid=lower+p/2;
+  var rounded=(n-lower>=p/2)? upper : lower;
+  var tPos=Math.round(Math.log(p)/Math.LN10);
+  var tIdx=s.length-1-tPos, dIdx=tIdx+1;
+  var row=el('div','digitrow'); 
+  for(var i=0;i<s.length;i++){
+    var sp=el('span',null,s[i]);
+    if(i===tIdx) sp.className='target';
+    else if(i===dIdx) sp.className='decider';
+    else if(i>dIdx) sp.className='zeroed';
+    row.appendChild(sp);
+  }
+  var dh=$('#roundDigits'); dh.innerHTML='';
+  dh.appendChild(row);
+  var key=el('div',null,'');
+  key.style.cssText='font-size:15px;color:var(--soft)';
+  key.innerHTML='<span style="background:var(--lemon);padding:1px 6px;border-radius:5px">target</span> = the '+PLACES[tPos]+' digit &nbsp; '+
+                '<span style="background:var(--coral);padding:1px 6px;border-radius:5px">decider</span> = the one digit to its right';
+  dh.appendChild(key);
+
+  var pct=((n-lower)/p)*100;
+  var line=$('#roundLine');
+  line.innerHTML='<div class="bar"></div>'+
+    '<div class="peg" style="left:0"></div><div class="peg mid" style="left:50%"></div><div class="peg" style="left:100%"></div>'+
+    '<div class="lbl edgeL" style="left:0">'+fmt(lower)+'</div>'+
+    '<div class="lbl midl" style="left:50%">halfway</div>'+
+    '<div class="lbl edgeR" style="left:100%">'+fmt(upper)+'</div>'+
+    '<div class="ball" style="left:'+pct+'%"></div>'+
+    '<div class="ballv" style="left:'+pct+'%;transform:'+edgeShift(pct)+'">'+fmt(n)+'</div>';
+
+  var decider=parseInt(s[dIdx],10);
+  $('#roundVerdict').innerHTML=fmt(n)+' to the '+placeLabel(p)+' is <span class="hl mint">'+fmt(rounded)+'</span>';
+  $('#roundWhy').innerHTML='The decider is '+decider+', so the target digit '+
+    (decider>=5? 'goes up by one' : 'stays as it is')+
+    ', and everything after it becomes zero. The digits in front are copied down unchanged — that is why the answer is still roughly the size of '+fmt(n)+'.';
+}
+renderRound();
+
+/* ---------------- lesson 6: estimation lab ---------------- */
+var ESTS=[
+ {q:'48 + 103',w:'≈ 50 + 100',a:'150',note:'Round each one to the nearest ten, then add.'},
+ {q:'223 ÷ 6',w:'≈ 225 ÷ 5',a:'45',note:'Compatible numbers: 225 and 5 divide exactly. Going down to 220 ÷ 6 would leave you stuck.'},
+ {q:'33 × 11',w:'≈ 30 × 10',a:'300',note:'Round each to its first digit and let the zeros do the work.'},
+ {q:'589 + 412',w:'≈ 600 + 400',a:'1,000',note:'Nearest hundred is close enough here.'},
+ {q:'7,812 − 2,197',w:'≈ 8,000 − 2,000',a:'6,000',note:'Nearest thousand. The exact answer, 5,615, is comfortably near it.'},
+ {q:'218 ÷ 7',w:'≈ 210 ÷ 7',a:'30',note:'210 is the nearest multiple of 7, so this divides cleanly.'},
+ {q:'19 × 52',w:'≈ 20 × 50',a:'1,000',note:'One rounds up, one rounds down — that keeps the estimate honest.'},
+ {q:'3,964 ÷ 41',w:'≈ 4,000 ÷ 40',a:'100',note:'Both become friendly numbers, and 4,000 ÷ 40 is just 400 ÷ 4.'}
+];
+var esi=0, esShown=false;
+function renderEst(){
+  var e=ESTS[esi];
+  $('#estBox').innerHTML='<div class="num" style="font-size:clamp(24px,5.5vw,34px)">'+e.q+'</div>'+
+    (esShown? '<div class="num" style="font-size:22px;margin-top:8px">'+e.w+'</div>'+
+              '<div class="verdict">≈ <span class="hl mint">'+e.a+'</span></div>'+
+              '<p style="color:var(--soft);margin:4px 0 0">'+e.note+'</p>'
+            : '<p style="color:var(--soft);margin:8px 0 0">What is this roughly equal to?</p>');
+}
+$('#estNext').addEventListener('click',function(){ esi=(esi+1)%ESTS.length; esShown=false; renderEst(); });
+$('#estShow').addEventListener('click',function(){ esShown=!esShown; renderEst(); });
+renderEst();
+
+/* ---------------- lesson 7: square builder ---------------- */
+function renderSq(k){
+  var g=$('#sqGrid');
+  g.style.gridTemplateColumns='repeat('+k+', auto)';
+  g.innerHTML='';
+  for(var i=0;i<k*k;i++) g.appendChild(el('i'));
+  $('#sqFacts').innerHTML='<span class="eq">'+k+' × '+k+' = '+(k*k)+'</span>'+
+    '<span class="eq">'+k+'² = '+(k*k)+'</span>'+
+    '<span class="eq">√'+(k*k)+' = '+k+'</span>'+
+    '<span style="color:var(--soft)">A square with '+k+' dots along each side holds '+(k*k)+' dots altogether.</span>';
+}
+$('#sqSlider').addEventListener('input',function(){ renderSq(parseInt(this.value,10)); });
+renderSq(4);
+(function(){
+  var t=$('#sqTable');
+  for(var k=1;k<=15;k++){
+    var d=el('div'); d.innerHTML=k+'² <b>'+(k*k)+'</b>';
+    t.appendChild(d);
+  }
+})();
+
+/* ---------------- lesson 7: root trapper ---------------- */
+var ROOTN=[8,20,29,46,48,63,103,120,160,200];
+var rootCur=46;
+function renderRoot(){
+  var nb=$('#rootNums'); nb.innerHTML='';
+  ROOTN.forEach(function(n){
+    var b=el('button','chipbtn'+(n===rootCur?' on':''),'√'+n);
+    b.addEventListener('click',function(){ rootCur=n; renderRoot(); });
+    nb.appendChild(b);
+  });
+  var n=rootCur, k=Math.floor(Math.sqrt(n));
+  if(k*k===n) k=k-1;
+  var low=k*k, high=(k+1)*(k+1);
+  var pct=((n-low)/(high-low))*100;
+  var est=Math.round(Math.sqrt(n));
+  $('#rootLine').innerHTML='<div class="bar"></div>'+
+    '<div class="peg" style="left:0"></div><div class="peg mid" style="left:50%"></div><div class="peg" style="left:100%"></div>'+
+    '<div class="lbl edgeL" style="left:0">'+low+' (√ = '+k+')</div>'+
+    '<div class="lbl midl" style="left:50%">halfway</div>'+
+    '<div class="lbl edgeR" style="left:100%">'+high+' (√ = '+(k+1)+')</div>'+
+    '<div class="ball" style="left:'+pct+'%"></div>'+
+    '<div class="ballv" style="left:'+pct+'%;transform:'+edgeShift(pct)+'">'+n+'</div>';
+  $('#rootVerdict').innerHTML='√'+n+' is between '+k+' and '+(k+1)+', and '+n+' is closer to '+(est===k?low:high)+
+    ', so <span class="hl mint">√'+n+' ≈ '+est+'</span>';
+}
+renderRoot();
+
+/* ---------------- THE TEST ---------------- */
+var QS=[
+{type:'mc',stem:'In <span class="num">4,706,342</span>, what is the <strong>value</strong> of the digit 7?',
+ opts:['700,000','70,000','7,000','7 hundreds'],ans:0,
+ exp:'The 7 sits in the hundred-thousands place, so it is worth 700,000. Naming the place is a different answer from giving the value.'},
+
+{type:'clickdigit',stem:'Tap the digit in the <strong>ten-thousands</strong> place of this number.',
+ num:'8,342,321',ans:2,
+ exp:'Counting from the right: 1 units, 2 tens, 3 hundreds, 2 thousands, then 4 — the ten-thousands digit.'},
+
+{type:'mc',stem:'Which is <span class="num">6,030,584</span> written correctly in words?',
+ opts:['Six million, three hundred thousand, five hundred and eighty-four',
+       'Six million, thirty thousand, five hundred and eighty-four',
+       'Six million and thirty-five thousand, eighty-four',
+       'Sixty million, thirty thousand, five hundred and eighty-four'],ans:1,
+ exp:'The thousands period reads 030, which is thirty thousand. The 0 holds the hundred-thousands seat and is never spoken.'},
+
+{type:'mc',stem:'Write the numeral: two million, six hundred and fourteen thousand and ninety.',
+ opts:['2,614,900','2,614,090','2,614,009','2,061,490'],ans:1,
+ exp:'Build it period by period and pad each to three digits: 2 | 614 | 090.'},
+
+{type:'tf',stem:'The expanded form of <span class="num">2,827,595</span> contains the part <span class="num">20,000</span>.',
+ ans:0,
+ exp:'True. 2,827,595 = 2,000,000 + 800,000 + 20,000 + 7,000 + 500 + 90 + 5. The second 2 is in the ten-thousands place.'},
+
+{type:'match',stem:'Match each square root to its value. One card is a decoy and stays in the pool.',
+ rows:[{p:'√49',a:'7'},{p:'√121',a:'11'},{p:'√169',a:'13'},{p:'√225',a:'15'}],
+ pool:['7','11','12','13','15'],
+ exp:'7×7=49, 11×11=121, 13×13=169, 15×15=225. The decoy 12 belongs to 144.'},
+
+{type:'bins',stem:'Sort these into perfect squares and numbers that are not perfect squares.',
+ bins:[{k:'yes',t:'Perfect square'},{k:'no',t:'Not a perfect square'}],
+ chips:[{t:'64',k:'yes'},{t:'90',k:'no'},{t:'100',k:'yes'},{t:'45',k:'no'},{t:'144',k:'yes'},{t:'50',k:'no'}],
+ exp:'64 = 8², 100 = 10², 144 = 12². 45, 50 and 90 cannot be arranged into a square — their roots land between two whole numbers.'},
+
+{type:'order',stem:'Put these in order, smallest first.',
+ items:[{t:'18,013',v:18013},{t:'18,032',v:18032},{t:'18,103',v:18103},{t:'18,123',v:18123},{t:'18,200',v:18200}],
+ exp:'All five have the same first two digits, so walk left to right and stop at the first place where they differ.'},
+
+{type:'mc',stem:'Which symbol makes this true? &nbsp;<span class="num">−32 &nbsp;?&nbsp; −19</span>',
+ opts:['&lt;  (less than)','&gt;  (greater than)'],ans:0,
+ exp:'−32 is further left on the number line, so it is the smaller number: −32 < −19. With negatives, the bigger-looking number is the smaller one.'},
+
+{type:'mc',stem:'Which list runs correctly from <strong>largest to smallest</strong>?',
+ opts:['12, 9, 1, −5, −13','−13, −5, 1, 9, 12','12, 9, 1, −13, −5','−5, −13, 1, 9, 12'],ans:0,
+ exp:'Positives first, biggest down, then the negatives — and −5 is larger than −13.'},
+
+{type:'mc',stem:'Round <span class="num">74,296</span> to the nearest <strong>thousand</strong>.',
+ opts:['4,000','70,000','74,000','75,000'],ans:2,
+ exp:'Target is the 4 in the thousands place, decider is 2, so the 4 stays and the tail becomes zeros: 74,000. The answer 4,000 is the value of the digit — a different question entirely.'},
+
+{type:'mc',stem:'Round <span class="num">57,624</span> to the nearest <strong>ten thousand</strong>.',
+ opts:['58,000','60,000','50,000','57,000'],ans:1,
+ exp:'Target is the 5 in the ten-thousands place and the decider is 7, so 5 becomes 6: 60,000. 58,000 would be the answer for the nearest thousand.'},
+
+{type:'mc',stem:'Round <span class="num">12,746,123</span> to the nearest <strong>ten</strong>.',
+ opts:['12,750','12,746,100','12,746,120','12,746,130'],ans:2,
+ exp:'Target is the 2 in the tens place, decider is 3, so the 2 stays and only the units become zero. The front of the number is copied down untouched.'},
+
+{type:'tf',stem:'Rounding <span class="num">9,842,160</span> to the nearest million gives <span class="num">10,000,000</span>.',
+ ans:0,
+ exp:'True. The decider is 8, so the target 9 rounds up — and 9 + 1 spills into the next column, making 10,000,000.'},
+
+{type:'bins',stem:'Round each of these to the nearest <strong>thousand</strong> and drop it in the right bin.',
+ bins:[{k:'a',t:'Rounds to 8,000'},{k:'b',t:'Rounds to 9,000'}],
+ chips:[{t:'8,499',k:'a'},{t:'8,500',k:'b'},{t:'7,961',k:'a'},{t:'9,043',k:'b'},{t:'8,712',k:'b'},{t:'8,388',k:'a'}],
+ exp:'Look only at the hundreds digit. 8,499 → 8,000 but 8,500 → 9,000, because a decider of 5 always rounds up. And 7,961 is closer to 8,000 than to 7,000.'},
+
+{type:'mc',stem:'What is the best estimate for <span class="num">218 ÷ 7</span>?',
+ opts:['3','30','300','70'],ans:1,
+ exp:'Use compatible numbers: 210 ÷ 7 = 30. The exact answer is 31.1, so 30 is a sensible estimate.'},
+
+{type:'mc',stem:'Estimate <span class="num">33 × 11</span>.',
+ opts:['44','300','330','3,000'],ans:1,
+ exp:'Round each to its first digit: 30 × 10 = 300. (330 is not wrong as an exact answer, but it is not an estimate — the question asks you to round first.)'},
+
+{type:'tf',stem:'To estimate an answer, you should work out the exact answer first and then round it.',
+ ans:1,
+ exp:'False. That defeats the whole point. You round first so the calculation becomes easy enough to do in your head.'},
+
+{type:'mc',stem:'Work out <span class="num">√9 − √49</span>.',
+ opts:['4','−4','40','−58'],ans:1,
+ exp:'√9 = 3 and √49 = 7, so 3 − 7 = −4. When you subtract a bigger number the answer is negative — keep the sign.'},
+
+{type:'mc',stem:'<span class="num">√48</span> is closest to which whole number?',
+ opts:['6','7','15','24'],ans:1,
+ exp:'48 sits between 36 and 49, and it is almost exactly 49, so √48 ≈ 7. You can never split a root into 49 + 64 — a root is done as one whole thing.'},
+
+{type:'mc',stem:'Estimate <span class="num">√16 + √8 − √144</span>.',
+ opts:['5','−5','7','−4'],ans:1,
+ exp:'√16 = 4, √8 ≈ 3 (8 is nearly 9), √144 = 12. So 4 + 3 − 12 = −5.'},
+
+{type:'tf',stem:'<span class="num">5²</span> means the same thing as <span class="num">5 × 2</span>.',
+ ans:1,
+ exp:'False. The little 2 tells you how many times to use the 5 in a multiplication: 5 × 5 = 25, not 10.'},
+
+{type:'match',stem:'Match each expression to its best estimate. One card is a decoy.',
+ rows:[{p:'√46',a:'7'},{p:'√160',a:'13'},{p:'√103 + √120',a:'21'},{p:'√15 × √80',a:'36'}],
+ pool:['7','13','20','21','36'],
+ exp:'√46 ≈ 7 (nearest 49). √160 ≈ 13 (nearest 169). √103 + √120 ≈ 10 + 11 = 21. √15 × √80 ≈ 4 × 9 = 36 — round each number to the nearest perfect square, then work out each root separately.'}
+];
+
+var quizHost=$('#quiz');
+function buildQuiz(){
+  quizHost.innerHTML='';
+  QS.forEach(function(q,i){
+    q.sel=null;
+    var card=el('div','q'); card.id='q'+i;
+    card.appendChild(el('span','qn','Question '+(i+1)));
+    var stem=el('p','stem'); stem.innerHTML=q.stem; card.appendChild(stem);
+    var body=el('div');
+    if(q.type==='mc'||q.type==='tf'){
+      var opts=(q.type==='tf')?['True','False']:q.opts;
+      var wrap=el('div',q.type==='tf'?'tfrow':'opts');
+      opts.forEach(function(o,oi){
+        var b=el('button','opt'); b.type='button';
+        if(q.type!=='tf') b.appendChild(el('span','k',String.fromCharCode(65+oi)));
+        var sp=el('span'); sp.innerHTML=o; b.appendChild(sp);
+        b.addEventListener('click',function(){
+          if(card.dataset.marked) return;
+          q.sel=oi;
+          $$('.opt',wrap).forEach(function(x){x.classList.remove('sel');});
+          b.classList.add('sel');
+        });
+        wrap.appendChild(b);
+      });
+      body.appendChild(wrap);
+    }
+    else if(q.type==='clickdigit'){
+      var strip=el('div','tilestrip');
+      body.appendChild(strip);
+      digitTiles(strip,q.num,function(idx){ if(!card.dataset.marked) q.sel=idx; });
+    }
+    else if(q.type==='match'){
+      var pid='pool-q'+i;
+      var pool=el('div','pool'); pool.id=pid; body.appendChild(pool);
+      shuffle(q.pool).forEach(function(v){ pool.appendChild(mkChip(v,{v:v,home:pid})); });
+      q.rows.forEach(function(r,ri){
+        var row=el('div','matchrow');
+        var p=el('div','matchprompt'); p.innerHTML=r.p; row.appendChild(p);
+        var z=mkZone(el('div'),1); z.dataset.ans=r.a; z.dataset.idx=ri;
+        row.appendChild(z); body.appendChild(row);
+      });
+    }
+    else if(q.type==='bins'){
+      var pid2='pool-q'+i;
+      var pool2=el('div','pool'); pool2.id=pid2; body.appendChild(pool2);
+      shuffle(q.chips).forEach(function(c){ pool2.appendChild(mkChip(c.t,{k:c.k,home:pid2})); });
+      var bins=el('div','bins');
+      q.bins.forEach(function(b){
+        var bx=el('div','bin');
+        var h=el('h5',null,b.t); bx.appendChild(h);
+        var z=mkZone(el('div')); z.dataset.k=b.k; bx.appendChild(z);
+        bins.appendChild(bx);
+      });
+      body.appendChild(bins);
+    }
+    else if(q.type==='order'){
+      var pid3='pool-q'+i;
+      var pool3=el('div','pool'); pool3.id=pid3; body.appendChild(pool3);
+      shuffle(q.items).forEach(function(it){ pool3.appendChild(mkChip(it.t,{v:it.v,home:pid3})); });
+      var slots=el('div','slots');
+      var sorted=q.items.slice().sort(function(a,b){return a.v-b.v;});
+      sorted.forEach(function(it,si){
+        var s=el('div','slot');
+        var z=mkZone(el('div'),1); z.dataset.v=it.v;
+        s.appendChild(z);
+        s.appendChild(el('div','cap', si===0?'smallest':(si===sorted.length-1?'largest':String(si+1)+'.')));
+        slots.appendChild(s);
+      });
+      body.appendChild(slots);
+    }
+    card.appendChild(body);
+    var fb=el('div','feedback'); fb.id='fb'+i; card.appendChild(fb);
+    quizHost.appendChild(card);
+  });
+  $('#scorecard').className='scorecard';
+}
+
+function markQuiz(){
+  var score=0;
+  QS.forEach(function(q,i){
+    var card=$('#q'+i), fb=$('#fb'+i), ok=false, note='';
+    card.dataset.marked='1';
+    if(q.type==='mc'||q.type==='tf'){
+      var ansIdx=(q.type==='tf')? q.ans : q.ans;
+      var buttons=$$('.opt',card);
+      buttons.forEach(function(b,bi){
+        b.classList.remove('sel');
+        if(bi===ansIdx) b.classList.add('correct');
+        else if(bi===q.sel) b.classList.add('incorrect');
+      });
+      ok=(q.sel===ansIdx);
+      if(q.sel===null) note='You left this one blank. ';
+    }
+    else if(q.type==='clickdigit'){
+      var tiles=$$('.tile',card).filter(function(t){return !t.classList.contains('comma');});
+      tiles.forEach(function(t,ti){
+        t.classList.remove('on');
+        if(ti===q.ans) t.style.background='#BEF0D8';
+        else if(ti===q.sel) t.style.background='#FFC9D1';
+      });
+      ok=(q.sel===q.ans);
+      if(q.sel===null) note='You left this one blank. ';
+    }
+    else if(q.type==='match'){
+      ok=true;
+      $$('.dz',card).forEach(function(z){
+        var c=$('.chip',z);
+        if(!c){ ok=false; return; }
+        var right=(c.dataset.v===z.dataset.ans);
+        c.classList.add(right?'right':'wrong');
+        if(!right) ok=false;
+      });
+    }
+    else if(q.type==='bins'){
+      ok=true;
+      if($$('.pool .chip',card).length) ok=false;
+      $$('.bin .dz',card).forEach(function(z){
+        $$('.chip',z).forEach(function(c){
+          var right=(c.dataset.k===z.dataset.k);
+          c.classList.add(right?'right':'wrong');
+          if(!right) ok=false;
+        });
+      });
+    }
+    else if(q.type==='order'){
+      ok=true;
+      $$('.slot .dz',card).forEach(function(z){
+        var c=$('.chip',z);
+        if(!c){ ok=false; return; }
+        var right=(c.dataset.v===z.dataset.v);
+        c.classList.add(right?'right':'wrong');
+        if(!right) ok=false;
+      });
+    }
+    if(ok) score++;
+    fb.className='feedback show '+(ok?'good':'bad');
+    fb.innerHTML='<b>'+(ok?'Correct.':'Not yet.')+'</b> '+note+q.exp;
+  });
+  var pct=Math.round(score/QS.length*100);
+  var sc=$('#scorecard');
+  sc.className='scorecard show';
+  $('#scorePct').textContent=pct+'%';
+  var msg;
+  if(pct===100) msg='Every single one. Rounding, estimating and roots included — that is the whole topic beaten.';
+  else if(pct>=85) msg='Strong work. Read the two or three explanations above, then run the test once more to close the gap.';
+  else if(pct>=65) msg='Solid foundation. Your marks are being lost in a few specific places — go back to the lesson those questions came from and play with the lab before retrying.';
+  else msg='Worth another pass. Work through Lessons 5, 6 and 7 with the sliders and buttons first, then come back. This test does not go anywhere.';
+  $('#scoreMsg').textContent='You scored '+score+' out of '+QS.length+'. '+msg;
+  if(sc.scrollIntoView) sc.scrollIntoView({behavior:'smooth',block:'center'});
+}
+$('#markBtn').addEventListener('click',markQuiz);
+$('#resetBtn').addEventListener('click',function(){ buildQuiz(); window.scrollTo({top:$('#test').offsetTop-10,behavior:'smooth'}); });
+buildQuiz();
+})();
+</script>
+</body>
+</html>
